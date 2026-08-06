@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gandr"
+version = "0.1.0"
+description = "Official Python client for the Gandr TTS API — 116 ms first audio byte, WER below the human floor, every render watermarked"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Gandr", email = "team@gandr.ai"}]
+keywords = ["tts", "text-to-speech", "speech-synthesis", "voice-ai", "voice-agents", "livekit", "pipecat"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://gandr.ai"
+Documentation = "https://gandr.ai/docs"
+Repository = "https://github.com/Gandr-AI/gandr"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["gandr*"]
