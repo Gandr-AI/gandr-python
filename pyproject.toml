@@ -23,7 +23,7 @@ dependencies = []
 [project.urls]
 Homepage = "https://gandr.ai"
 Documentation = "https://gandr.ai/docs"
-Repository = "https://github.com/Gandr-AI/gandr"
+Repository = "https://github.com/Gandr-AI/gandr-python"
 
 [tool.setuptools.packages.find]
 where = ["."]
