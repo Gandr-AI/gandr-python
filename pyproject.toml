@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gandr"
-version = "0.1.0"
-description = "Official Python client for the Gandr TTS API — 116 ms first audio byte, WER below the human floor, every render watermarked"
+version = "0.1.1"
+description = "Official Python client for the Gandr TTS API. Reads numbers and dates correctly, WER below the human reference, every render watermarked."
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}

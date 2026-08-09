@@ -26,7 +26,7 @@ class GandrError(Exception):
         self.payload = payload
         msg = payload.get("error", payload) if isinstance(payload, dict) else payload
         hint = payload.get("hint", "") if isinstance(payload, dict) else ""
-        super().__init__(f"[{status}] {msg}" + (f" — {hint}" if hint else ""))
+        super().__init__(f"[{status}] {msg}" + (f", {hint}" if hint else ""))
 
 
 class Gandr:
@@ -34,7 +34,7 @@ class Gandr:
 
     def __init__(self, api_key: str, *, timeout: float = 60.0):
         if not api_key:
-            raise ValueError("api_key is required — get one at https://gandr.ai")
+            raise ValueError("api_key is required, get one at https://gandr.ai")
         self.api_key = api_key
         self.timeout = timeout
 
@@ -53,16 +53,16 @@ class Gandr:
     ) -> bytes:
         """Render text to a WAV file (returned as bytes).
 
-        temperature: 0.1–1.2, pitch range / melody. Omit for the tuned default.
-        cfg_weight:  0.2–1.0, pacing (lower = more spacious).
-        speed:       0.6–1.5 pace multiplier.  volume: 0.5–2.0 gain.
-        sample_rate: 8000–48000, resampled server-side.
-        pronunciation: [{"text": "Nguyen", "pronunciation": "win"}] — sounds-like.
+        temperature: 0.1 to 1.2, pitch range / melody. Omit for the tuned default.
+        cfg_weight:  0.2 to 1.0, pacing (lower = more spacious).
+        speed:       0.6 to 1.5 pace multiplier.  volume: 0.5 to 2.0 gain.
+        sample_rate: 8000 to 48000, resampled server-side.
+        pronunciation: [{"text": "Nguyen", "pronunciation": "win"}], sounds-like.
         """
         if not text or not text.strip():
             raise ValueError("text must not be empty")
         if len(text) > 2000:
-            raise ValueError("text is over the 2000-character request cap — split it")
+            raise ValueError("text is over the 2000-character request cap, split it")
         body: dict = {
             "transcript": text,
             "language": language,
@@ -105,11 +105,11 @@ class Gandr:
                 with urllib.request.urlopen(req, timeout=self.timeout) as r:
                     return r.read()
             except urllib.error.HTTPError as e:
-                # 4xx is the door answering — do not fail over on a real answer
+                # 4xx is the door answering, do not fail over on a real answer
                 try:
                     raise GandrError(e.code, json.loads(e.read()))
                 except json.JSONDecodeError:
                     raise GandrError(e.code, e.reason)
             except (urllib.error.URLError, TimeoutError, OSError) as e:
-                last = e  # door unreachable — try the next region
+                last = e  # door unreachable, try the next region
         raise GandrError(0, f"all doors unreachable: {last}")

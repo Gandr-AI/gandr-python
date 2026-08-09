@@ -1,4 +1,4 @@
-"""Gandr TTS — official Python client.
+"""Gandr TTS, official Python client.
 
 Install:  pip install gandr
 First call in four lines:
