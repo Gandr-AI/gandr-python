@@ -2,7 +2,7 @@
 
 Official Python & JavaScript clients for the **Gandr TTS API**, text to speech built for voice agents.
 
-- **Audio streams back as it is generated**, so playback can start before the whole clip has rendered
+- **Audio streams back as it is generated**, so playback can start before the whole clip has rendered. First audio byte in **146 ms over the open internet, 116 ms p50 first audio, server side warm**
 - **WER 1.982%** on a 1,088-line set, the human recordings score 2.171% on the same scorer
 - **$10 a month for one million tokens** (one token is one character), or **unlimited, unmetered** stream plans from **$150/mo** (annual)
 - **Every render watermarked** (imperceptible, detectable)
@@ -82,7 +82,7 @@ except GandrError as e:
 ## Honest limits
 
 - One request carries up to **2,000 characters**, split longer text at sentence boundaries.
-- The streaming WebSocket lane (`wss://tts.gandr.ai/ws`) is what voice agents should use, first audio byte in the numbers above. This SDK's `say()` returns the complete file, which suits batch and IVR work.
+- The streaming WebSocket lane (`wss://tts.gandr.ai/ws`) is what voice agents should use. This SDK's `say()` returns the complete file, which suits batch and IVR work.
 
 ## Links
 
